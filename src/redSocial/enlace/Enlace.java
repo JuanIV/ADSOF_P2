@@ -1,4 +1,6 @@
-package redSocial;
+package redSocial.enlace;
+
+import redSocial.usuario.Usuario;
 
 /**
  * Clase básica enlace

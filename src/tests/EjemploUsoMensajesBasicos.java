@@ -1,5 +1,8 @@
 package tests;
 import redSocial.*;
+import redSocial.enlace.Enlace;
+import redSocial.mensaje.Mensaje;
+import redSocial.usuario.Usuario;
 
 /**
  * Clase para comprobar el funcionamiento del codigo implementado en los primeros 3 apartados

@@ -1,4 +1,7 @@
-package redSocial;
+package redSocial.mensaje;
+
+import redSocial.enlace.Enlace;
+import redSocial.usuario.Usuario;
 
 /**
  * Clase básica de Mensaje
@@ -12,18 +15,6 @@ public class Mensaje {
 	private int alcance;
 	private Usuario lector;
 	
-	/**
-	 * Creador de Mensaje. El lector inicial será el autor
-	 * @param msj Contenido del mensaje
-	 * @param alcance Alcance inicial del mensaje
-	 * @param autor Usuario autor del mensaje
-	 */
-	public Mensaje(String msj, int alcance, Usuario autor) {
-		this.mensaje = msj;
-		this.autor = autor;
-		this.alcance = alcance;
-		this.lector = autor;
-	}
 	
 	/**
 	 * Creador especificando un usuario lector inicial
@@ -38,6 +29,16 @@ public class Mensaje {
 		this.autor = autor;
 		this.lector = lector;
 		
+	}
+	
+	/**
+	 * Creador de Mensaje. El lector inicial será el autor
+	 * @param msj Contenido del mensaje
+	 * @param alcance Alcance inicial del mensaje
+	 * @param autor Usuario autor del mensaje
+	 */
+	public Mensaje(String msj, int alcance, Usuario autor) {
+		this(msj, alcance, autor, autor);
 	}
 
 	/**

@@ -1,6 +1,8 @@
 package tests;
 
 import redSocial.*;
+import redSocial.enlace.Enlace;
+import redSocial.usuario.Usuario;
 
 /**
  * Clase para comprobar el funcionamiento de los usuarios

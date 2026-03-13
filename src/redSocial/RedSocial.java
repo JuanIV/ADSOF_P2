@@ -40,7 +40,6 @@ public class RedSocial {
 		
 		if (fSimulacion != null) leerSimulacion(fSimulacion);
 	}
-
 	
 	/**
 	 * Función que guarda la red social en los ficheros especificados
@@ -61,6 +60,85 @@ public class RedSocial {
 		return st;
 	}
 
+	/**
+	 * Función que añade un usuario a la red social
+	 * @param nombre Username del nuevo usuario
+	 * @param capacidadAmp capacidad de amplificación del nuevo Usuario
+	 * @return true si todo ha funcionado correctamente, false en caso contrario
+	 */
+	public boolean anadirUsuario(String nombre, int capacidadAmp) {
+		if (usuarios.containsKey(nombre)) return false;
+		
+		Usuario user = new Usuario(nombre, capacidadAmp);
+		
+		usuarios.put(nombre, user);
+		
+		return true;
+	}
+	
+	/**
+	 * Función que añade un enlace a la red social
+	 * @param origen nombre del usuario de origen del enlace
+	 * @param destino origen nombre del usuario de destino del enlace
+	 * @param coste Valor coste de propagación del enlace
+	 * @return true si todo ha funcionado correctamente, false en caso contrario
+	 */
+	public boolean anadirEnlace(String origen, String destino, int coste) {
+		Usuario uOrigen, uDestino;
+		
+		if ((uOrigen = usuarios.get(origen)) == null || (uDestino  = usuarios.get(destino)) == null) return false;
+		
+		return uOrigen.addEnlace(uDestino, coste);
+	}
+	
+	/**
+	 * Función que crea un mensaje que se encuentra en el uInicial. Su alcance será aquel de la capacidad de ampliación del usuario inicial
+	 * @param mensaje contenido del mensaje. Este no puede contener el caracter '"'
+	 * @param uInicial usuario que crea el mensaje y en el cual se encuentra inicialmente
+	 * @param propagacion nombres de todos los usuarios a los que se propagará el mensaje
+	 * @return true si todo ha funcionado correctamente, false en caso contrario
+	 */
+	public boolean anadirMensaje(String mensaje, String uInicial, String...propagacion) {
+		if (mensaje.contains("\"")) return false;
+		
+		List<Usuario> listaPropagacion = new ArrayList<>();
+		Usuario orig, dest;
+		
+		if ((orig = usuarios.get(uInicial)) == null) return false;
+		
+		for (String name: propagacion) {
+			if ((dest = usuarios.get(name)) == null) return false;
+			listaPropagacion.add(dest);
+		}
+		
+		Mensaje msj = new Mensaje(mensaje, orig.getCapacidadAmp(), listaPropagacion.getFirst());
+		
+		for (Usuario u: listaPropagacion) {
+			if (msj.difunde(u)) System.out.println(msj);
+		}
+		
+		return true;
+	}
+	
+	/**
+	 * Método que altera un enlace a partir del usuario origen, destino original y nuevo destino.
+	 * Para que funcione correctamente deben existir previamente todos los usuarios y el enlace 
+	 * @param origen
+	 * @param destOriginal
+	 * @param destNuevo
+	 * @param coste
+	 * @return
+	 */
+	public boolean cambiarEnlace(String origen, String destOriginal, String destNuevo, int coste) {
+		Usuario uOrigen, uDestOriginal, uDestNuevo;
+		
+		if ((uOrigen = usuarios.get(origen)) == null ||
+				(uDestOriginal = usuarios.get(origen)) == null ||
+				(uDestNuevo = usuarios.get(origen)) == null) return false;
+		
+		return uOrigen.cambiarEnlace(uDestOriginal, uDestNuevo, coste);
+	}
+	
 	/**
 	 * Función privada que carga los usuarios a la red social a partir de un fichero
 	 * @param fUsuarios nombre/ direccion del fichero leído
@@ -276,7 +354,6 @@ public class RedSocial {
 			}
 		}
 			
-		
 		return true;
 	}
 	

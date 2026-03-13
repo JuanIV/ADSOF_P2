@@ -82,13 +82,10 @@ public class Enlace {
 	public boolean cambiarDestino(Usuario destino, int coste) {
 		this.destino = destino;
 		
-		if(coste <= 0) {
-			sumaCostes += 1 - this.coste;
-			this.coste = 1;
-		} else {
-			sumaCostes += coste - this.coste;
-			this.coste = coste;
-		}
+		if(coste <= 0) this.coste = 1;
+		
+		sumaCostes += coste - this.coste;
+		
 		
 		return true;
 	}

@@ -5,9 +5,9 @@ import java.io.IOException;
 public class EjemploDeUsoRedSocial {
 
 	public static void main(String[] args) {
-		System.out.println("Entraaaa");
 		try {
 			RedSocial r1 = new RedSocial("usuarios1.txt", "enlaces1.txt", "mensaje1.txt");
+			Exposicion.getNext(Exposicion.ALTA);
 		} catch(IOException e) {
 			
 		}

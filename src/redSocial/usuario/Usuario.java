@@ -148,13 +148,40 @@ public class Usuario {
 		return this.addEnlace(e);
 	}
 	
+	/**
+	 * Método que permite alterar un enlace a partir de un usuario destino origina si este existe
+	 * @param destOriginal Usuario destino original
+	 * @param destNuevo Usuario destino nuevo
+	 * @param coste Nuevo coste del enlace
+	 * @return true si se ha cambiado correctamente, false en caso contrario
+	 */
+	public boolean cambiarEnlace (Usuario destOriginal, Usuario destNuevo, int coste) {
+		Enlace e = this.getEnlace(destOriginal);
+		if (e == null) return false;
+		
+		return e.cambiarDestino(destNuevo, coste);
+	}
+	
+	/**
+	 * Método usado a la hora de cargar la información para simplemente añadir un mensaje al usuario
+	 * @param msj mensaje a añadir
+	 * @return true si se añade correctamente, false en caso contrario
+	 */
 	public boolean addMensaje(Mensaje msj) {
+		if (historial.contains(msj)) return false;
 		return historial.add(msj);
 	}
 	
+	/**
+	 * Método que determina si un usuario ha registrado un mensaje
+	 * @param msj Mensaje a comprobar
+	 * @return true si lo tiene, false en caso contrario
+	 */
 	public boolean hasMensaje(Mensaje msj) {
 		return historial.contains(msj);
 	}
+	
+	
 	
 	/**
 	 * Método que se encarga de añadir el mensaje al historial del usuario y de modificar su propio alcance y exposición

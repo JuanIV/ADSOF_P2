@@ -26,7 +26,6 @@ public class TestsMensajes {
         Mensaje m = new Mensaje("Hola", 20, a);
 
         // Getters
-        System.out.println("Autor correcto: " + (m.getAutor() == a));
         System.out.println("Mensaje correcto: " + m.getMensaje().equals("Hola"));
         System.out.println("Alcance inicial correcto: " + (m.getAlcance() == 20));
         System.out.println("Lector inicial es autor: " + (m.getLector() == a));

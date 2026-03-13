@@ -10,7 +10,6 @@ import redSocial.usuario.Usuario;
  * Version: 1.0
  */
 public class Mensaje {
-	private Usuario autor;
 	private String mensaje;
 	private int alcance;
 	private Usuario lector;
@@ -20,13 +19,11 @@ public class Mensaje {
 	 * Creador especificando un usuario lector inicial
 	 * @param msj Contenido del mensaje
 	 * @param alcance Alcance inicial del mensaje
-	 * @param autor Usuario autor del mensaje
 	 * @param lector Usuario lector inicial del mensaje
 	 */
 	public Mensaje(String msj, int alcance, Usuario autor, Usuario lector) {
 		this.mensaje = msj;
 		this.alcance = alcance;
-		this.autor = autor;
 		this.lector = lector;
 		
 	}
@@ -39,14 +36,6 @@ public class Mensaje {
 	 */
 	public Mensaje(String msj, int alcance, Usuario autor) {
 		this(msj, alcance, autor, autor);
-	}
-
-	/**
-	 * Getter del autor del mensaje
-	 * @return Usuario autor del mensaje
-	 */
-	public Usuario getAutor() {
-		return autor;
 	}
 	
 	/**

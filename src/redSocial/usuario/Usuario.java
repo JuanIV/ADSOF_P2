@@ -111,6 +111,14 @@ public class Usuario {
 	public Enlace getEnlace(Usuario destino) {
 		return this.enlacesPorDestino.get(destino);
 	}
+	
+	/**
+	 * Metodo para obtener el alcance promedio del usuario
+	 * @return el alcance promedio 
+	 */
+	public double getAlcancePromedio() {
+		return alcancePromedio;
+	}
 
 	/**
 	 * Método para añadir un enlace a la lista de enlaces
@@ -144,6 +152,15 @@ public class Usuario {
 		return historial.add(msj);
 	}
 	
+	public boolean hasMensaje(Mensaje msj) {
+		return historial.contains(msj);
+	}
+	
+	/**
+	 * Método que se encarga de añadir el mensaje al historial del usuario y de modificar su propio alcance y exposición
+	 * @param msj mensaje a ser añadido
+	 * @return true si se ha registrado correctamente, false en caso contrario
+	 */
 	public boolean registrarMensaje (Mensaje msj) {
 		if (msj == null) return false;
 		
@@ -159,7 +176,8 @@ public class Usuario {
 		}
 		
 		int size = historial.size();
-		alcancePromedio = (alcancePromedio *(size-1) + alcance)/size;
+		if (size == 1) alcancePromedio = alcance;
+		else alcancePromedio = (alcancePromedio *(size-1) + alcance)/size;
 		
 		return true;
 	}

@@ -6,6 +6,13 @@ import redSocial.usuario.Usuario;
 public class MensajeControlado extends Mensaje {
 	private int rigidez;
 	
+	/**
+	 * Construcutor completo del mensaje controlado
+	 * @param msj contenido en String del mensaje
+	 * @param alcance int con el alcance del mensaje
+	 * @param autor
+	 * @param rigidez
+	 */
 	public MensajeControlado(String msj, int alcance, Usuario autor, int rigidez) {
 		super(msj, alcance, autor);
 		
@@ -35,6 +42,11 @@ public class MensajeControlado extends Mensaje {
 		if (e instanceof EnlaceSenuelo) return false;
 		
 		return super.difunde(e);
+	}
+
+
+	public int getRigidez() {
+		return rigidez;
 	}
 	
 }

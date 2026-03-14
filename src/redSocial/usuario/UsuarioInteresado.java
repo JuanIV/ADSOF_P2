@@ -20,6 +20,7 @@ public class UsuarioInteresado extends Usuario{
 	}	
 	
 	public Enlace getEnlacePopular() {
+		//System.out.println("Busca enlace popular");
 		for (Enlace e: enlacesOrdenados) {
 			if (e.getUsuarioDestino().getNivelExposicion().compareTo(Exposicion.ALTA) >= 0) {
 				return e;

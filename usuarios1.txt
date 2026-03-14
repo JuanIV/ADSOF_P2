@@ -1,6 +1,6 @@
-ana 3
-luis 10
-carmen 2
-diego 1
-mario 3
-fede 0
+luis 10 ALTA 0.000000
+ana 3 ALTA 0.000000
+mario 3 ALTA 0.000000
+diego 1 VIRAL 2.000000
+carmen 2 VIRAL 7.000000
+fede 0 ALTA 0.000000

@@ -16,7 +16,7 @@ public enum Exposicion {
 		Exposicion[] valores = values();
 		int posicion = e.ordinal();
 		
-		if (posicion < valores.length) {
+		if (posicion + 1 < valores.length) {
 			return valores[posicion + 1];
 		} else {
 			return valores[posicion];

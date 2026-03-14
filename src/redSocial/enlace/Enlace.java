@@ -99,6 +99,14 @@ public class Enlace {
 	}
 	
 	/**
+	 * Método que determina si un mensaje puede cruzar un enlace
+	 * @return true para los enlaces normales
+	 */
+	public boolean puedePasar() {
+		return true;
+	}
+	
+	/**
 	 * Devuelve la suma del coste y el coste especial del enlace
 	 * @return Coste real del enlace
 	 */

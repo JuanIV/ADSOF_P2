@@ -39,7 +39,10 @@ public class MensajeControlado extends Mensaje {
 	 * @return true si se pudo difundir, false si no se pudo
 	 */
 	public boolean difunde(Enlace e) {
-		if (e instanceof EnlaceSenuelo) return false;
+		if (e instanceof EnlaceSenuelo) {
+			System.out.println("Los mensajes controlados no pueden pasar por enlaces señuelo");
+			return false;
+		}
 		
 		return super.difunde(e);
 	}

@@ -1,0 +1,3 @@
+"Hola!" 2 diego
+@ana(3) Exp: ALTA Avg: 0.0 [(@ana--1-->luis), (@ana--5-->carmen)]
+@carmen(2) Exp: VIRAL Avg: 7.0 [(@carmen--6-->diego), (@carmen--8-->mario)]

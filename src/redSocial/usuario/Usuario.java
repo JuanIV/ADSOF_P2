@@ -32,6 +32,7 @@ public class Usuario {
 		this.nombre = nombre;
 		this.capacidadAmp = capacidadAmp;
 		this.exposicion = exposicion;
+		this.alcancePromedio = alcancePromedio;
 	}
 	
 	/**
@@ -219,6 +220,6 @@ public class Usuario {
 	
 	@Override
 	public String toString() {
-		return "@"+this.nombre+"("+this.capacidadAmp+")"+this.enlacesOrdenados.toString();
+		return "@"+this.nombre+"("+this.capacidadAmp+") Exp: "+exposicion.name()+ " Avg: "+ alcancePromedio +" "+this.enlacesOrdenados.toString();
 	}
 }

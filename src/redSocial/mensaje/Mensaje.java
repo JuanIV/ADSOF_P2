@@ -1,7 +1,8 @@
 package redSocial.mensaje;
 
+import java.util.*;
 import redSocial.enlace.Enlace;
-import redSocial.usuario.Usuario;
+import redSocial.usuario.*;
 
 /**
  * Clase básica de Mensaje
@@ -12,30 +13,20 @@ import redSocial.usuario.Usuario;
 public class Mensaje {
 	private String mensaje;
 	private int alcance;
-	private Usuario lector;
+	private List<Usuario> lectores = new ArrayList<>();
 	
 	
 	/**
-	 * Creador especificando un usuario lector inicial
+	 * Creador especificando un usuario lector inicial, al que se le añade el mensaje
 	 * @param msj Contenido del mensaje
 	 * @param alcance Alcance inicial del mensaje
-	 * @param lector Usuario lector inicial del mensaje
+	 * @param lectorActual Usuario lector inicial del mensaje
 	 */
-	public Mensaje(String msj, int alcance, Usuario autor, Usuario lector) {
+	public Mensaje(String msj, int alcance, Usuario lectorActual) {
 		this.mensaje = msj;
 		this.alcance = alcance;
-		this.lector = lector;
-		
-	}
-	
-	/**
-	 * Creador de Mensaje. El lector inicial será el autor
-	 * @param msj Contenido del mensaje
-	 * @param alcance Alcance inicial del mensaje
-	 * @param autor Usuario autor del mensaje
-	 */
-	public Mensaje(String msj, int alcance, Usuario autor) {
-		this(msj, alcance, autor, autor);
+		lectores.add(lectorActual);
+		lectorActual.addMensaje(this);
 	}
 	
 	/**
@@ -59,7 +50,23 @@ public class Mensaje {
 	 * @return Usuario en el que se encuentra el mensaje
 	 */
 	public Usuario getLector() {
-		return lector;
+		return lectores.getLast();
+	}
+	
+	/**
+	 * Getter de todos los usuarios que han leído el mensaje
+	 * @return Array de usuarios
+	 */
+	public Usuario[] getLectores() {
+		return lectores.toArray(new Usuario[0]);
+	}
+	
+	/**
+	 * Devuelve el número de Usuarios a los que se les ha compartido este mensaje
+	 * @return el número de lectores
+	 */
+	public int getNLectores() {
+		return lectores.size();
 	}
 	
 	/**
@@ -68,10 +75,13 @@ public class Mensaje {
 	 * @return true si se puede difundir, false si no
 	 */
 	private boolean puedeDifundirPor(Enlace e) {
-		if(this.lector.getEnlace(e.getUsuarioDestino()) == null)
+		if(this.lectores.getLast().getEnlace(e.getUsuarioDestino()) == null)
 			return false;
 		if(this.alcance < e.costeReal()) 
 			return false;
+		if(e.puedePasar() == false) 
+			return false;
+		
 		return true;
 	}
 	
@@ -95,9 +105,13 @@ public class Mensaje {
 		if(!this.aceptadoPor(e.getUsuarioDestino()))
 			return false;
 		
-		this.lector = e.getUsuarioDestino();
+		lectores.add(e.getUsuarioDestino());
 		this.alcance -= e.costeReal();
 		this.alcance += e.getUsuarioDestino().getCapacidadAmp();
+		
+		e.getUsuarioDestino().registrarMensaje(this);
+		
+		System.out.println(this);
 		
 		return true;
 	}
@@ -108,11 +122,25 @@ public class Mensaje {
 	 * @return true si se pudo difundir todas las veces, false si no
 	 */
 	public boolean difunde(Usuario...usuarios) {
-		boolean ret = true;
+		Enlace e = null;
+		boolean ret = true, status = true;
 		
 		for(Usuario u : usuarios) {
-			Enlace e = this.lector.getEnlace(u);
+			
+			while(lectores.getLast() instanceof UsuarioInteresado && status) {
+				if((e = ((UsuarioInteresado) lectores.getLast()).getEnlacePopular()) == null) break;
+				
+				status = difunde(e);
+				e = null;
+			}
+			
+			//System.out.println("- Lector: "+lector+"\n- Destinado a: "+u);
+			
+			e = lectores.getLast().getEnlace(u);
+			
+			
 			if(e != null) {
+				//System.out.println(e);
 				if(this.difunde(e) == false)
 					ret = false;
 			} else ret = false;
@@ -123,6 +151,6 @@ public class Mensaje {
 	
 	@Override
 	public String toString() {
-		return "Mensaje ("+this.mensaje+":"+this.alcance+") en @"+this.lector.getNombre();
+		return "Mensaje ("+this.mensaje+":"+this.alcance+") en @"+this.lectores.getLast().getNombre();
 	}
 }

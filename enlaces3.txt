@@ -2,7 +2,10 @@ luis diego 7
 luis mario 4
 ana luis 1
 ana carmen 5
+Interesado Pepito 5 2 0.000000
+Interesado luis 10
 mario fede 1
 diego fede 3
 carmen diego 6
 carmen mario 8
+Pepito luis 10

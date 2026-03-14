@@ -220,6 +220,6 @@ public class Usuario {
 	
 	@Override
 	public String toString() {
-		return "@"+this.nombre+"("+this.capacidadAmp+") Exp: "+exposicion.name()+ " Avg: "+ alcancePromedio +" "+this.enlacesOrdenados.toString();
+		return "@"+this.nombre+"("+this.capacidadAmp+")"+" "+this.enlacesOrdenados.toString();
 	}
 }

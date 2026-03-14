@@ -104,6 +104,9 @@ public class Mensaje {
 			return false;
 		if(!this.aceptadoPor(e.getUsuarioDestino()))
 			return false;
+		// Para evitar bucles infinitos entre dos UsuarioInteresado añado esta línea
+		if (e.getUsuarioDestino().hasMensaje(this)) 
+			return false;
 		
 		lectores.add(e.getUsuarioDestino());
 		this.alcance -= e.costeReal();

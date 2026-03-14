@@ -146,7 +146,7 @@ public class RedSocial {
 	 * @return true si todo ha funcionado correctamente, false en caso contrario
 	 */
 	public boolean anadirMensaje(String mensaje, String uInicial, String...propagacion) throws IllegalArgumentException {
-		if (mensaje.contains("\"")) return false;
+		if (mensaje.isBlank()) throw new IllegalArgumentException("Contenido del mensaje vacío");
 		
 		List<Usuario> listaPropagacion = new ArrayList<>();
 		Usuario orig, dest;
@@ -207,7 +207,7 @@ public class RedSocial {
 	 * @param coste
 	 * @return
 	 */
-	public boolean cambiarEnlace(String origen, String destOriginal, String destNuevo, int coste) {
+	public boolean cambiarEnlace(String origen, String destOriginal, String destNuevo, int coste) throws IllegalArgumentException{
 		Usuario uOrigen, uDestOriginal, uDestNuevo;
 		
 		if ((uOrigen = usuarios.get(origen)) == null ||
@@ -497,7 +497,7 @@ public class RedSocial {
 				 * al lector actual y se añade en la creación del mensaje
 				 */
 				for (i = 0; i + 1 < nLectores; i++) {
-					writer.printf("%s%n", lectores[i]);
+					writer.printf("%s%n", lectores[i].getNombre());
 				}
 			}
 		}

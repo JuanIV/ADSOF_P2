@@ -32,6 +32,13 @@ public class EjemploDeUsoRedSocial {
 				System.out.println(e);
 			}
 			
+			System.out.println("Intenta cambiar un enlace no existente:");
+			try {
+				r1.cambiarEnlace("luis", "mario", "carmen", 10);
+			} catch (IllegalArgumentException e) {
+				System.out.println(e);
+			}
+			
 			System.out.println("Intenta crear un mensaje vacío:");
 			try {
 				r1.anadirMensaje("", "luis");

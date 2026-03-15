@@ -90,7 +90,7 @@ public class Mensaje {
 	 * @param u Usuario que puede aceptar o no el mensaje
 	 * @return true si lo acepta, false si lo rechaza
 	 */
-	private boolean aceptadoPor(Usuario u) {
+	public boolean aceptadoPor(Usuario u) {
 		return true;
 	}
 	

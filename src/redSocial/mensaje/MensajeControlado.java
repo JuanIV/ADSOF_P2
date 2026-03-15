@@ -21,6 +21,7 @@ public class MensajeControlado extends Mensaje {
 	}
 	
 	
+	@Override
 	/**
 	 * Método para comprobar si el mensaje controlado fue aceptado
 	 * @param u Usuario que puede aceptar o no el mensaje

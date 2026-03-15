@@ -211,8 +211,8 @@ public class RedSocial {
 		Usuario uOrigen, uDestOriginal, uDestNuevo;
 		
 		if ((uOrigen = usuarios.get(origen)) == null ||
-				(uDestOriginal = usuarios.get(origen)) == null ||
-				(uDestNuevo = usuarios.get(origen)) == null) throw new IllegalArgumentException("Alguno de los nombres de usuario no existe");
+				(uDestOriginal = usuarios.get(destOriginal)) == null ||
+				(uDestNuevo = usuarios.get(destNuevo)) == null) throw new IllegalArgumentException("Alguno de los nombres de usuario no existe");
 		
 		return uOrigen.cambiarEnlace(uDestOriginal, uDestNuevo, coste);
 	}

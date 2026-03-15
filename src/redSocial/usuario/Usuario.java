@@ -8,8 +8,8 @@ import redSocial.mensaje.Mensaje;
 /**
  * Clase básica Usuario
  * 
- * Autores: Juan Ibáñez y Tiago Oselka
- * Version: 1.0
+ * @author Juan Ibáñez y Tiago Oselka
+ * @version 3.1
  */
 public class Usuario {
 	private String nombre;
@@ -39,6 +39,7 @@ public class Usuario {
 	 * Creador completo de Usuario
 	 * @param nombre Nombre del usuario
 	 * @param capacidadAmp Capacidad de ampliación del usuario
+	 * @param exposicion Nivel de exposición asociada al Usuario
 	 */
 	public Usuario(String nombre, int capacidadAmp, Exposicion exposicion) {
 		this.nombre = nombre;
@@ -210,9 +211,9 @@ public class Usuario {
 		
 		int alcance = msj.getAlcance() ; 
 		if (alcance > alcancePromedio) {
-			exposicion = Exposicion.getNext(exposicion);
+			exposicion = exposicion.getNext();
 		} else if (alcance < alcancePromedio) {
-			exposicion = Exposicion.getPrev(exposicion);			
+			exposicion = exposicion.getPrev();			
 		}
 		
 		int size = historial.size();
@@ -224,7 +225,7 @@ public class Usuario {
 	
 	/**
 	 * Modificador del nivel de exposicion de un usuario
-	 * @param nuevo nivel de exposicion
+	 * @param e Nuevo nivel de exposicion
 	 */
 	public void cambiarExposicion(Exposicion e) {
 		exposicion = e;

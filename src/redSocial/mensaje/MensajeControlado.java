@@ -3,6 +3,12 @@ package redSocial.mensaje;
 import redSocial.enlace.*;
 import redSocial.usuario.Usuario;
 
+/**
+ * Clase de MensajeControlaso, subclase de mensaje
+ * 
+ * @author Juan Ibáñez y Tiago Oselka
+ * @version 1.3
+ */
 public class MensajeControlado extends Mensaje {
 	private int rigidez;
 	
@@ -10,11 +16,11 @@ public class MensajeControlado extends Mensaje {
 	 * Construcutor completo del mensaje controlado
 	 * @param msj contenido en String del mensaje
 	 * @param alcance int con el alcance del mensaje
-	 * @param autor
-	 * @param rigidez
+	 * @param lectorActual Usuario que tiene actualmente el mensaje
+	 * @param rigidez Rigidez asociada al mensaje
 	 */
-	public MensajeControlado(String msj, int alcance, Usuario autor, int rigidez) {
-		super(msj, alcance, autor);
+	public MensajeControlado(String msj, int alcance, Usuario lectorActual, int rigidez) {
+		super(msj, alcance, lectorActual);
 		
 		if (rigidez < 0) this.rigidez = 0;
 		else this.rigidez = rigidez;

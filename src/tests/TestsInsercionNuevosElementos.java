@@ -14,7 +14,7 @@ public class TestsInsercionNuevosElementos {
 	static void testInsercionNuevos() {
 		RedSocial r1;
 		try {
-			r1 = new RedSocial("usuarios1.txt", "enlaces1.txt", "mensaje1.txt");
+			r1 = new RedSocial("txt/usuarios1.txt", "txt/enlaces1.txt", "txt/mensaje1.txt");
 			
 			System.out.println("===== TEST INSERCIÓN DE NUEVOS ELEMENTOS =====");
 			r1.anadirUsuario("Tiago", 15);
@@ -33,9 +33,9 @@ public class TestsInsercionNuevosElementos {
 	static void testInsercionParametrosInvalidos() {
 		RedSocial r1;
 		try {
-			r1 = new RedSocial("usuarios1.txt", "enlaces1.txt", "mensaje1.txt");
-		
 			System.out.println("===== TEST INSERCIÓN DE ELEMENTOS INVÁLIDOS =====");
+			r1 = new RedSocial("txt/usuarios1.txt", "txt/enlaces1.txt", "txt/mensaje1.txt");
+		
 			System.out.println("Intenta añadir usuario con nombre ya registrado:");
 			try {
 				r1.anadirUsuario("luis", 10);

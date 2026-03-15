@@ -14,7 +14,7 @@ public class TestsFuncionalidadesGenerales6 {
 	static void testDifusionMensajeControlado() {
 		try {
 			System.out.println("===== TEST DIFUSION MENSAJE CONTROLADO =====");
-			RedSocial r1 = new RedSocial("usuarios1.txt", "enlaces1.txt", "mensaje1.txt");
+			RedSocial r1 = new RedSocial("txt/usuarios1.txt", "txt/enlaces1.txt", "txt/mensaje1.txt");
 			r1.anadirUsuarioInteresado("Interesado", 15);
 			r1.anadirUsuario("Aislado", 1);
 			r1.anadirUsuario("Pepito", 20);

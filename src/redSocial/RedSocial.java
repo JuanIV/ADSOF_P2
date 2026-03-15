@@ -6,6 +6,12 @@ import redSocial.usuario.*;
 import redSocial.enlace.*;
 import java.io.*;
 
+/**
+ * Clase fachada que implementa toda la funcionalidad de la red social
+ * 
+ * @author Juan Ibáñez y Tiago Oselka
+ * @version 5.1
+ */
 public class RedSocial {
 	private Map<String, Usuario> usuarios = new HashMap<>();
 	private List<Mensaje> mensajes  = new ArrayList<>();
@@ -96,6 +102,13 @@ public class RedSocial {
 		return true;
 	}
 	
+	/**
+	 * Método para cambiar la exposición de un Usuario en tiempo de ejecución
+	 * @param nombre Nombre del Usuario cuya exposición deseamos cambiar
+	 * @param nuevaExposicion String/name de la Exposición
+	 * @return true si se cambia correctamente, false en caso contrario
+	 * @throws IllegalArgumentException se lanza en caso de que no exista el nombre del Usuario o la nuevaExposición sea una Exposición no válida
+	 */
 	public boolean cambiarExposicionUsuario(String nombre, String nuevaExposicion) throws IllegalArgumentException {
 		Usuario user;
 		if ((user = usuarios.get(nombre)) == null) throw new IllegalArgumentException("Nombre de usuario no existente");
@@ -185,6 +198,7 @@ public class RedSocial {
 	 * Método que crea un mensaje que se encuentra en el uInicial. Su alcance será aquel de la capacidad de ampliación del usuario inicial
 	 * @param mensaje contenido del mensaje. Este no puede contener el caracter '"'
 	 * @param uInicial usuario que crea el mensaje y en el cual se encuentra inicialmente
+	 * @param rigidez Rigidez asociada al mensaje controlado
 	 * @param propagacion nombres de todos los usuarios a los que se propagará el mensaje
 	 * @return true si todo ha funcionado correctamente, false en caso contrario
 	 */
@@ -214,11 +228,11 @@ public class RedSocial {
 	/**
 	 * Método que altera un enlace a partir del usuario origen, destino original y nuevo destino.
 	 * Para que funcione correctamente deben existir previamente todos los usuarios y el enlace 
-	 * @param origen
-	 * @param destOriginal
-	 * @param destNuevo
-	 * @param coste
-	 * @return
+	 * @param origen Nombre del Usuario origen del enlace a modificar
+	 * @param destOriginal Nombre del Usuario destino actual del enlace a modificar
+	 * @param destNuevo del Usuario destino nuevo del enlace a modificar
+	 * @param coste Nuevo coste del enlace
+	 * @return true si se modifica correctamente, false en caso contrario
 	 */
 	public boolean cambiarEnlace(String origen, String destOriginal, String destNuevo, int coste) throws IllegalArgumentException{
 		Usuario uOrigen, uDestOriginal, uDestNuevo;
@@ -376,7 +390,7 @@ public class RedSocial {
 	 * @throws IOException en caso de haber un error a la hora de abrir el fichero
 	 * @throws IllegalArgumentException en caso de que los argumentos leÍdos sean inválidos
 	 */
-	public boolean leerSimulacion(String fMensaje) throws IOException, IllegalArgumentException {
+	private boolean leerSimulacion(String fMensaje) throws IOException, IllegalArgumentException {
 		try(BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(fMensaje)))) {
 			Mensaje msj;
 			Usuario autor, user;

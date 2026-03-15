@@ -5,8 +5,8 @@ import redSocial.usuario.Usuario;
 /**
  * Clase básica enlace
  * 
- * Autores: Juan Ibáñez y Tiago Oselka
- * Version: 1.0
+ * @author Juan Ibáñez y Tiago Oselka
+ * @version 1.0
  */
 public class Enlace {
 	private static int sumaCostes;
@@ -78,6 +78,7 @@ public class Enlace {
 	 * Método para cambiar el usuario de destino
 	 * @param destino Nuevo usuario de destino
 	 * @param coste Nuevo coste del enlace
+	 * @return true si se cambia correctamente, false en caso contrario
 	 */
 	public boolean cambiarDestino(Usuario destino, int coste) {
 		if(destino == null) return false;

@@ -7,8 +7,8 @@ import redSocial.usuario.*;
 /**
  * Clase básica de Mensaje
  * 
- * Autores: Juan Ibáñez y Tiago Oselka
- * Version: 1.0
+ * @author Juan Ibáñez y Tiago Oselka
+ * @version 3.2
  */
 public class Mensaje {
 	private String mensaje;

@@ -2,6 +2,12 @@ package redSocial.enlace;
 
 import redSocial.usuario.Usuario;
 
+/**
+ * Implementación del enlace señuelo, subclase de Enlace
+ * 
+ * @author Juan Ibáñez y Tiago Oselka
+ * @version 1.3
+ */
 public class EnlaceSenuelo extends Enlace {
 	private int factorCoste;
 	private double probRetorno;

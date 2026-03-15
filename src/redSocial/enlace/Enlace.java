@@ -80,13 +80,16 @@ public class Enlace {
 	 * @param coste Nuevo coste del enlace
 	 */
 	public boolean cambiarDestino(Usuario destino, int coste) {
+		if(destino == null) return false;
+		if(this.origen.equals(destino)) return false;
+		
 		this.destino = destino;
+		sumaCostes -= this.coste;
 		
 		if(coste <= 0) this.coste = 1;
+		else this.coste = coste;
 		
-		sumaCostes += coste - this.coste;
-		
-		
+		sumaCostes += this.coste;
 		return true;
 	}
 	

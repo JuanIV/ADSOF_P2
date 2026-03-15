@@ -27,30 +27,40 @@ public class MensajeControlado extends Mensaje {
 	 * @param u Usuario que puede aceptar o no el mensaje
 	 * @return true si lo acepta, false si lo rechaza
 	 */
-	public boolean aceptadoPor(Usuario u) {
-		if (this.rigidez < u.getNivelExposicion().getRigidez()) return false;
+	public boolean aceptadoPor(Usuario u) {		
+		boolean st = this.rigidez >= u.getNivelExposicion().getRigidez();
 		
-		return true;
+		if (st == false) System.out.println("El mensaje no fue aceptado por falta de rigidez");
+		
+		return st;
 	}
 	
 	@Override
 	/**
-	 * Método para difundir el mensaje controlado a través de un enlace
-	 * @param e Enlace desde el lector hasta un nuevo usuario
-	 * @return true si se pudo difundir, false si no se pudo
+	 * Método auxiliar para comprobar si el mensaje controlado se puede difundir
+	 * @param e Enlace a través del cual se comprueba la posibilidad de difusión
+	 * @return true si se puede difundir, false si no
 	 */
-	public boolean difunde(Enlace e) {
+	protected boolean puedeDifundirPor(Enlace e) {
 		if (e instanceof EnlaceSenuelo) {
 			System.out.println("Los mensajes controlados no pueden pasar por enlaces señuelo");
 			return false;
 		}
 		
-		return super.difunde(e);
+		return super.puedeDifundirPor(e);
 	}
 
-
+	/**
+	 * Getter de la rigidez del mensaje controlado
+	 * @return valor de la rigidez
+	 */
 	public int getRigidez() {
 		return rigidez;
+	}
+	
+	@Override
+	public String toString() {
+		return super.toString() + " Rigidez: " + rigidez;
 	}
 	
 }

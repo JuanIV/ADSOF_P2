@@ -74,7 +74,7 @@ public class Mensaje {
 	 * @param e Enlace a través del cual se comprueba la posibilidad de difusión
 	 * @return true si se puede difundir, false si no
 	 */
-	private boolean puedeDifundirPor(Enlace e) {
+	protected boolean puedeDifundirPor(Enlace e) {
 		if(this.lectores.getLast().getEnlace(e.getUsuarioDestino()) == null)
 			return false;
 		if(this.alcance < e.costeReal()) 
@@ -109,10 +109,10 @@ public class Mensaje {
 			return false;
 		
 		lectores.add(e.getUsuarioDestino());
+		e.getUsuarioDestino().registrarMensaje(this);
+		
 		this.alcance -= e.costeReal();
 		this.alcance += e.getUsuarioDestino().getCapacidadAmp();
-		
-		e.getUsuarioDestino().registrarMensaje(this);
 		
 		System.out.println(this);
 		

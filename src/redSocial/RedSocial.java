@@ -85,13 +85,26 @@ public class RedSocial {
 	 * @return true si todo ha funcionado correctamente, false en caso contrario
 	 */
 	public boolean anadirUsuarioInteresado(String nombre, int capacidadAmp) throws IllegalArgumentException{
-		if (usuarios.containsKey(nombre)) throw new IllegalArgumentException("Nombre de usuario ya existente");;
+		if (usuarios.containsKey(nombre)) throw new IllegalArgumentException("Nombre de usuario ya existente");
 		
 		Usuario user = new UsuarioInteresado(nombre, capacidadAmp);
 		
 		usuarios.put(nombre, user);
 		
 		System.out.println("Nuevo UsuarioInteresado: "+user);
+		
+		return true;
+	}
+	
+	public boolean cambiarExposicionUsuario(String nombre, String nuevaExposicion) throws IllegalArgumentException {
+		Usuario user;
+		if ((user = usuarios.get(nombre)) == null) throw new IllegalArgumentException("Nombre de usuario no existente");
+		
+		Exposicion exp = Exposicion.valueOf(nuevaExposicion);
+		
+		user.cambiarExposicion(exp);
+		
+		System.out.println("Nivel de exposicion de "+user.getNombre()+" cambiado a "+exp.name());
 		
 		return true;
 	}
@@ -407,6 +420,9 @@ public class RedSocial {
 			}
 			
 			msj.difunde(propagacion.toArray(new Usuario[0]));
+			for (Usuario u: propagacion) {
+				if (msj.difunde(u)) System.out.println(msj);
+			}
 		
 			return true;
 		}

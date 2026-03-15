@@ -159,8 +159,20 @@ public class Usuario {
 	public boolean cambiarEnlace (Usuario destOriginal, Usuario destNuevo, int coste) {
 		Enlace e = this.getEnlace(destOriginal);
 		if (e == null) return false;
+		if(this.getEnlace(destNuevo) != null) return false;
+		if(this.equals(destNuevo)) return false;
 		
-		return e.cambiarDestino(destNuevo, coste);
+		if(!e.cambiarDestino(destNuevo, coste)) return false;
+		
+		if (!this.equals(destNuevo)) {
+			enlacesPorDestino.remove(destOriginal);
+			enlacesPorDestino.put(destNuevo, e);
+			
+			enlacesOrdenados.remove(e);
+			enlacesOrdenados.add(e);
+		}
+		
+		return true;
 	}
 	
 	/**
@@ -214,12 +226,12 @@ public class Usuario {
 	 * Modificador del nivel de exposicion de un usuario
 	 * @param nuevo nivel de exposicion
 	 */
-	void cambiarExposicion(Exposicion e) {
+	public void cambiarExposicion(Exposicion e) {
 		exposicion = e;
 	}
 	
 	@Override
 	public String toString() {
-		return "@"+this.nombre+"("+this.capacidadAmp+")"+" "+this.enlacesOrdenados.toString();
+		return "@"+this.nombre+"("+this.capacidadAmp+")"+ " Alcance promedio: "+alcancePromedio+ " Nivel exposicion: "+ exposicion.name() + " "+this.enlacesOrdenados.toString();
 	}
 }
